@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-shop | Buy From Us!</title>
+    <link rel="shortcut icon" href="../static/img/cart.png" type="image/x-icon" th:href="@{/img/cart.png}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/stylesheet.css" th:href="@{/css/stylesheet.css}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<div th:if="${currentSession==null}" th:insert="~{template_user.html::header}"></div>
+<div th:if="${currentSession!=null}" th:insert="~{template_logged_user.html::header}"></div>
+
+
+
+<header class="banner">
+    <p class="banner-selection">
+        <a th:href="@{/}" class="home-link"> Home</a>
+        <a th:href="@{/getCart}" class="home-link"> | Cart </a>
+        <small>  | Order</small>
+    </p>
+</header>
+<main>
+    <main class="main">
+        <article class="main-container">
+            <div class="odetail-table-details">
+                <ul>
+                    <li id="order-details-title">Order details</li>
+                    <li id="order-details-name" th:text="'Name: '+ ${user.name}"> </li>
+                    <li id="order-details-email" th:text="'Email: '+ ${user.email}"> </li>
+                    <li id="order-details-address" th:text="'Address: '+ ${user.address}"></li>
+                </ul>
+                    <table class="odetail-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="odetail: ${cart}">
+                            <td th:text="${odetail.name}"></td>
+                            <td th:text="${odetail.price}">Price</td>
+                            <td th:text="${odetail.quantity}">Quantity</td>
+                            <td th:text="${odetail.total}">Total</td>
+                        </tr>   
+                    </tbody>
+                </table>
+            </div>
+                <div class="subtotal-container">
+                    <h2 id="subtotal-title">Order Summary: </h2>
+                    <div class="subtotal-details-list">
+                        <span id="subtotal-total"><h4 th:text="'Total: ' + ${order.total}"></h4></span>
+                        <span id="subtotal-order"><a th:href="@{/saveOrder}"><button type="submit" id="btn-order">Generate Order</button></a></span>
+                    </div>
+            
+        </div>
+        </article>
+    </main>
+</main>
+<!-- footer-->
+<div th:insert="~{template_user.html::footer}"></div>

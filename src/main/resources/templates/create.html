@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-shop | Buy From Us!</title>
+    <link rel="shortcut icon" href="../static/img/cart.png" type="image/x-icon" th:href="@{/img/cart.png}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/stylesheet.css" th:href="@{/css/stylesheet.css}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+
+<body>
+    <!-- Navigation list, navigation bar and logo -->
+    <div th:insert="~{template_admin.html::header}"></div>
+
+    <header class="banner">
+        <p class="banner-selection"><a th:href="@{/admin}" class="home-link"> Home</a> <small> | Create Product </small></p>
+    </header>
+    <main class="main">
+        <article class="main-container">
+            <form th:action="@{/products/save}" method="post" class="create-form" enctype="multipart/form-data">
+                <div class="product-name">
+                    <label for="name">Product name: </label>
+                    <input type="text" name="name" id="name" class="product-name-input" placeholder="Enter product name">
+                </div>
+                <div class="product-description">
+                    <label for="description">Product description</label>
+                    <textarea name="description" id="description" placeholder="Enter product description"></textarea>
+                </div>
+                <div class="product-quantity">
+                    <label for="quantity">Product quantity: </label>
+                    <input type="number" name="quantity" id="quantity" class="product-quantity-input" placeholder="Enter product quantity">
+                </div>
+                <div class="product-price">
+                    <label for="price">Product price: </label>
+                    <input type="number" name="price" id="price" class="product-price-input" placeholder="Enter product price">
+                </div>
+                <div class="product-image">
+                    <label for="img"></label>
+                    <input type="file" class="product-image-input" name="img" id="img">
+                </div>
+                <div class="create-form-button">
+                    <button type="submit" id="btn-create">Save</button>
+                </div>
+                
+            </form>
+          
+        </article>
+    </main>
+    <!-- footer-->
+    <div th:insert="~{template_user.html::footer}"></div>
+
+</body>
+</html> 

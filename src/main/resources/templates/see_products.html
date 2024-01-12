@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-shop | Buy From Us!</title>
+    <link rel="shortcut icon" href="../static/img/cart.png" type="image/x-icon" th:href="@{/img/cart.png}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/stylesheet.css" th:href="@{/css/stylesheet.css}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+
+<body>
+    <!-- Navigation list, navigation bar and logo -->
+    <div th:insert="~{template_admin.html::header}"></div>
+
+    <header class="banner">
+        <p class="banner-selection"><a th:href="@{/admin}" class="home-link"> Home</a> <small> | Products </small></p>
+    </header>
+    <main class="main">
+        <article class="main-container">
+            <div class="products-table-details">
+                <a th:href="@{/products/create}"><button id="btn-create">New Product</button> </a>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>-</th>
+                            <th>-</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="p: ${products}">
+                            <td th:text="${p.name}"></td>
+                            <td th:text="${p.description}"></td>
+                            <td th:text="${p.quantity}"></td>
+                            <td th:text="${p.price}"></td>
+                            <td><a class="btn-edit" th:href="@{products/edit/{id} (id= ${p.id}) }"> Edit</a></td>
+                            <td><a class="btn-delete" th:href="@{products/delete/{id} (id= ${p.id}) }">Delete</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+    </main>
+    <!-- footer-->
+    <div th:insert="~{template_user.html::footer}"></div>
+    
+</body>
+</html> 

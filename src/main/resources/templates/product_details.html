@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-shop | Buy From Us!</title>
+    <link rel="shortcut icon" href="../static/img/cart.png" type="image/x-icon" th:href="@{/img/cart.png}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/stylesheet.css" th:href="@{/css/stylesheet.css}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<div th:if="${currentSession==null}" th:insert="~{template_user.html::header}"></div>
+<div th:if="${currentSession!=null}" th:insert="~{template_logged_user.html::header}"></div>
+
+
+<body>
+    <!-- Navigation list, navigation bar and logo -->
+
+    <!-- Navigation banner -->
+    <header class="banner">
+        <p class="banner-selection"><a th:href="@{/}" class="home-link"> Home</a> <small> | Details</small></p>
+    </header>
+     <!-- Details  -->
+    <main class="main">
+        <article class="main-container">
+            <div class="details-product-image">
+                <img  src="../static/images"  th:src="@{/images/{img} (img=${product.image})}" alt="S$R product" class="details-image-product">
+            </div>
+            <div class="details-product-description">
+                <form th:action="@{/cart}" method="POST" class="details-product-selection">
+                    <input type="hidden" th:value="${product.id}" name="id">
+                    <h2 class="details-product-name" th:text="${product.name}"></h2>
+
+                    <ul class="details-product-selection-list">
+                        <li class="details-product-price">
+                            <p th:text="'Price : ' +${product.price}" id="product-price">Price: </p></li>
+                        <li class="details-product-description-paragraph">
+                            <p th:text="${product.description}" id="product-description">:</p></li>
+                        <li class="details-product-quantity">
+                            <p id="product-quantity">Quantity:</p>
+                            <input type="number" id="quantity" name="quantity"
+                            class="quantity-selector" autocomplete="off" min="1" max="10" value="1">
+                        </li>
+                    </ul>
+                   <button type="submit" id="btn-qty">Add To Cart</button>
+                </form>
+            </div>
+        </article>
+    </main>
+    <!-- footer-->
+    <div th:insert="~{template_user.html::footer}"></div>
+
+</body>
+</html> 

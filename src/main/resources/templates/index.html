@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-shop | Buy From Us!</title>
+    <link rel="shortcut icon" href="../static/img/cart.png" type="image/x-icon" th:href="@{/img/cart.png}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/stylesheet.css" th:href="@{/css/stylesheet.css}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<div th:if="${currentSession==null}" th:insert="~{template_user.html::header}"></div>
+<div th:if="${currentSession!=null}" th:insert="~{template_logged_user.html::header}"></div>
+
+
+<body>
+    <!-- Navigation list, navigation bar and logo -->
+
+    <!-- Billboard which we could use as a carousel in the future-->
+    <header>
+        <article class="billboard">
+            <h1 class="billboard-text">Welcome to the world best leather store!</h1>
+            <p class="billboard-paragraph"> Take a look to our new products</p>
+       </article> 
+    </header>
+    <!-- Products to show-->
+    <main>
+        <!-- Here we use "product" and method findAll() which is a list of attributes-->
+       <article class="product" th:each="product: ${products}">
+            <div class="product-body">
+                <div class="product-body-contentimg">
+                    <img src="../static/images"  th:src="@{/images/{img} (img=${product.image})}" alt="product" class="product-body-img">
+                </div>
+                <h1 class="product-body-title" th:text="${product.name}"></h1>
+                <p id="description" th:text="${product.description}"></p>
+            </div>
+            <div class="product-footer">
+                <div class="product-footer-link">
+                    <a th:href="@{/products/{id} (id=${product.id}) }"><button type="button" id="btn-details">See more details</button></a>
+                </div>
+            </div>
+       </article>
+
+    </main>
+    <!-- footer-->
+    <div th:insert="~{template_user.html::footer}"></div>
+
+</body>
+</html> 

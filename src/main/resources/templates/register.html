@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-shop | Buy From Us!</title>
+    <link rel="shortcut icon" href="../static/img/cart.png" type="image/x-icon" th:href="@{/img/cart.png}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/stylesheet.css" th:href="@{/css/stylesheet.css}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+
+<body>
+    <!-- Navigation bar and logo -->
+    <div th:insert="~{template_user.html::header}"></div>
+    <!-- Navigation banner -->
+    <header class="banner">
+        <p class="banner-selection"><small id="register">Register</small></p>
+    </header>
+    <main class="main">
+        <article class="main-container">
+            <form  th:action="@{/user/save}" method="post" class="register-form">
+                <div class="register-name">
+                  <label for="name"> Name: </label>      
+                  <input type="text" class="name-register" id="name" name="name" placeholder="Enter your name" required autocomplete="off"> 
+                </div>
+
+                <div class="register-email">
+                    <label for="email"> Email: </label>      
+                    <input type="email" class="email-register" id="email" name="email" placeholder="Enter your email" required autocomplete="off">
+                </div>
+
+                <div class="register-address">
+                    <label for="address"> Address: </label>      
+                    <input type="text" class="address-register" id="address" name="address" placeholder="Enter your address" required autocomplete="off">
+                </div>
+            
+                <div class="register-password">
+                  <label for="password"> Password: </label>
+                  <input type="password"  class="password-register" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+          
+                
+                <div class="register-button">
+                    <button type="submit" id="btn-register"> Save</button>
+                </div>
+              </form>
+        </article>
+
+    </main>
+    <!-- footer-->
+    <div th:insert="~{template_user.html::footer}"></div>
+
+</body>
+</html> 
